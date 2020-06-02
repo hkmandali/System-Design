@@ -3,15 +3,15 @@ This repo has the code for some of the design problems I solve and this section 
 
 Some of the initial steps which can be thought/clarified during the inital phase of the design
 
-a) why do we need that system 
-b) requirements and goals of the system
-c)capacity estimation and constraints
-d)some design considerations ( to restrict ourselves into specific module/s )
-e)Api exposing
-f)high level design
-g)low level design
-h)data partitioning and replication
-i)caching
+* why do we need that system 
+* requirements and goals of the system
+* capacity estimation and constraints
+* some design considerations ( to restrict ourselves into specific module/s )
+* Api exposing
+* high level design
+* low level design
+*data partitioning and replication
+*caching
 
 with these concepts in mind , we can think about an initial design on how to proceed with sql/no sql approach and rest/soap based approach
 required for modules independently
