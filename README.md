@@ -16,7 +16,7 @@ i)caching
 with these concepts in mind , we can think about an initial design on how to proceed with sql/no sql approach and rest/soap based approach
 required for modules independently
 
-1.   Indexing :
+                                                      1.   Indexing :
   As we have to retrieve the data from non volatile resource ( hard disk) , we dont know in which section the data is stored actually
   
   Indexing is a way by which a database record is retrieved quickly ( this is used during read purpose ) . With a table having millions of records,
@@ -52,7 +52,7 @@ required for modules independently
   left , this helps us in quicker retrieval however for writing the data into the db it takes o(logn) time as each record needs to pushed 
   into B+ tree which has an insertion of O(logn) , and if anytime re arranging of the tree happens it is going to take even more time .
   
-  So what's the difference between LSM and B tree as both of them seem the same as we are pushing the data into db and it is getting inserted
+  > So what's the difference between LSM and B tree as both of them seem the same as we are pushing the data into db and it is getting inserted
   at O(logn) , the diff is that in LSM ,records are accumulated in memory till a threshold and are flushed at a single go into the db,
   where the records are initially sorted and stored in SST and then compaction of those SST's happen , where as in case of B tree , the 
   records are pushed into db at each and every step making insertion and retrieval O(logn)
