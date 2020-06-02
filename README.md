@@ -67,7 +67,20 @@ required for modules independently
   I/O calls which results is more bandwidth consumption , so we need to store some data in memory and push them onto db when a certain criteria
   (threshold) is met .
   
+                                                        3. Data Warehousing
   
+  > Data warehousing is an important concept in distributed systems , it is predominantly used by the means of ETL ( extraction transform load) which means to extract the data --> transform it based on something --> and then load it for our business purpose .
+  Query languages can be thought of as 3 types 
+  i) SQL 
+  ii)  Document -- which can be used in one to many mappings
+  iii) Graph QL -- which is also used in facebook to findout the mutual connections 
+  
+  ETL majorly uses column oriented storage 
+  Online systems have two different types of processing systems called OLTP and OLAP 
+  End users requests and responses are diverted to Online Transaction processing(OLTP) which basically holds the latest data
+  Internal users/ analysts who work on the queries/data have access to the Online Analytic Processing(OLAP) so that the data is accessed
+  from a different db and the end user doesnt see much difference in the performance as these queries run for a longer time and doesnt
+  block the db 
   
   
   
