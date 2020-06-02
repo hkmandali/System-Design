@@ -10,8 +10,8 @@ Some of the initial steps which can be thought/clarified during the inital phase
 * Api exposing
 * high level design
 * low level design
-*data partitioning and replication
-*caching
+* data partitioning and replication
+* caching
 
 with these concepts in mind , we can think about an initial design on how to proceed with sql/no sql approach and rest/soap based approach
 required for modules independently
@@ -71,9 +71,9 @@ required for modules independently
   
   > Data warehousing is an important concept in distributed systems , it is predominantly used by the means of ETL ( extraction transform load) which means to extract the data --> transform it based on something --> and then load it for our business purpose .
   Query languages can be thought of as 3 types 
-  i) SQL 
-  ii)  Document -- which can be used in one to many mappings
-  iii) Graph QL -- which is also used in facebook to findout the mutual connections 
+  1. SQL 
+  1. Document -- which can be used in one to many mappings
+  1. Graph QL -- which is also used in facebook to findout the mutual connections 
   
   ETL majorly uses column oriented storage 
   Online systems have two different types of processing systems called OLTP and OLAP 
