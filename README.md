@@ -48,7 +48,7 @@ required for modules independently
    above , and the merge process in the backend is called compaction
    
   B - tree - B tree  is similar to BST in DS where all the nodes to the right are > root and left are < root , similarly in a B tree all the records
-  > root ( that particular column on which indexing is being done ) are stored to the right and similarly lesser values are stored to the
+  > greater than root ( that particular column on which indexing is being done ) are stored to the right and similarly lesser values are stored to the
   left , this helps us in quicker retrieval however for writing the data into the db it takes o(logn) time as each record needs to pushed 
   into B+ tree which has an insertion of O(logn) , and if anytime re arranging of the tree happens it is going to take even more time .
   
