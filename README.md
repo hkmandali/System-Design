@@ -18,7 +18,8 @@ required for modules independently
 
 ### Table of Contents
 
-1. [Encoding]https://github.com/hkmandali/System-Design/blob/master/README.md#3-encoding
+1. [Indexing](https://github.com/hkmandali/System-Design/blob/master/README.md#1---indexing)
+1. [Encoding](https://github.com/hkmandali/System-Design/blob/master/README.md#3-encoding)
 
 ## 1.   Indexing :
 
