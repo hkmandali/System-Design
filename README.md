@@ -16,7 +16,7 @@ Some of the initial steps which can be thought/clarified during the inital phase
 with these concepts in mind , we can think about an initial design on how to proceed with sql/no sql approach and rest/soap based approach
 required for modules independently
 
-                                                      1.   Indexing :
+                                                    ## 1.   Indexing :
   As we have to retrieve the data from non volatile resource ( hard disk) , we dont know in which section the data is stored actually
   
   Indexing is a way by which a database record is retrieved quickly ( this is used during read purpose ) . With a table having millions of records,
@@ -67,7 +67,7 @@ required for modules independently
   I/O calls which results is more bandwidth consumption , so we need to store some data in memory and push them onto db when a certain criteria
   (threshold) is met .
   
-                                                        3. Data Warehousing
+                                                    ##  2. Data Warehousing
   
   > Data warehousing is an important concept in distributed systems , it is predominantly used by the means of ETL ( extraction transform load) which means to extract the data --> transform it based on something --> and then load it for our business purpose .
   Query languages can be thought of as 3 types 
@@ -82,7 +82,7 @@ required for modules independently
   from a different db and the end user doesnt see much difference in the performance as these queries run for a longer time and doesnt
   block the db 
   
-                                                     4. Encoding
+                                                   ## 3. Encoding
                                                      
  >  When any data is being transmitted between two processes/applications , it is expected that data is encoded and then sent to other 
  process which can be decoded by using the same algorithm which is used to encode the content . 
