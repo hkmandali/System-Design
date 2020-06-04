@@ -16,6 +16,10 @@ Some of the initial steps which can be thought/clarified during the inital phase
 with these concepts in mind , we can think about an initial design on how to proceed with sql/no sql approach and rest/soap based approach
 required for modules independently
 
+### Table of Contents
+
+1. [Encoding]https://github.com/hkmandali/System-Design/blob/master/README.md#3-encoding
+
 ## 1.   Indexing :
 
   As we have to retrieve the data from non volatile resource ( hard disk) , we dont know in which section the data is stored actually
