@@ -82,5 +82,66 @@ required for modules independently
   from a different db and the end user doesnt see much difference in the performance as these queries run for a longer time and doesnt
   block the db 
   
+                                                     4. Encoding
+                                                     
+ >  When any data is being transmitted between two processes/applications , it is expected that data is encoded and then sent to other 
+ process which can be decoded by using the same algorithm which is used to encode the content . 
+ > The reason for encoding is that , data in XML/ Json take more space compared to the binary(encoded) formats, this is not the same as 
+  encrypting which is used in data confidentiality purpose 
+  One of the simplest ways which we use in our daily practice encoding is serialization , which can be done using serializable interface
+  1. Json encoding isnt much useful because there isn't much saving in space
+  
+  Below are some of the ways used in RPC calls , so that data can be sent in encoded format
+  
+  > Thrift and protocol buffers
+  
+  * Binary Protocol -- Thrift
+  * Compact Protocol -- Thrift
+  * Avro Encoding
+  
+  The below two belong to Thrift
+  1. Binary protocol is similar to json encoding but the difference is that there are no field names (instead we use field tags)
+  1. Compact protocol is similar to binary , the diff being that it uses less bytes 
+  
+  > * Protocol Buffer has repeated string in addition to thrift
+  
+  * Avro Encoding
+       This has reader and writer schema , this is preferable for dynamic schemas.
+  > Thrift and compact require code generation whereas Avro doesnt need it .
+   All 3 of the above use schemas
+  
+  ###### Once data is encoded how does the data flow happen between the processes ?
+  
+  > Data Flow Models
+  
+  1. Through Databases -- Let's say we have data which needs to be sent between two processes , the easiest way is to store the data
+      from one process into a db and then retrieving the data from db through second process ( dataflow through db )
+  1. Service Calls -- through Rest and RPC 
+  1. Message Passing
+  
+  * Dataflow through DB
+    What happens when a new column is added ? how does the disk seek happen ? 
+    Since the data flow between old and new versions can happen i.e lets say we have data for some version and we have changed the 
+    schema in the next version ? how is it going to identify ? 
+    The data is encoded with the latest version so we need to make sure of backward and forward compatibility
+    
+  * Dataflow through Service Calls 
+    * Web Service : 
+      When http is used as an underlying protocol , it is called a web service . It is of two types .
+      1. Rest 
+         This does it through url
+      1. Soap 
+         Has the overhead of wsdl( web services definition lang) xml file
+    * RPC 
+      THis is very much different from the local calls , the diff between RPC and IPC is that in case of IPC both the processes might
+      be in the same computer or on the different but RPC is a method to call server from a client .
+      RPC can be built on top of rest . RPC needs something called Service discovery ( Request Routing ) and also RPC compatibility
+      needs to be maintained
+  * Message Passing 
+    This is similar to a message queue , has the advantage of message not being lost . Distributed actor frameworks are similar to 
+    message brokers .
+      
+    
+      
   
   
