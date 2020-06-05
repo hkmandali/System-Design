@@ -21,6 +21,7 @@ required for modules independently
 1. [Indexing](https://github.com/hkmandali/System-Design/blob/master/README.md#1---indexing)
 1. [Data Warehousing](https://github.com/hkmandali/System-Design/blob/master/README.md#2-data-warehousing)
 1. [Encoding](https://github.com/hkmandali/System-Design/blob/master/README.md#3-encoding)
+1. [Distributed Data](https://github.com/hkmandali/System-Design/blob/master/README.md#4-distributed-data)
 
 ## 1.   Indexing
 
@@ -150,13 +151,13 @@ required for modules independently
       
 ## 4. Distributed Data 
 
-          This is the  most important chapter as in many of the products the data is wide spread among different machines .
+   > This is the  most important chapter as in many of the products the data is wide spread among different machines .
     There are two ways a scale a system
     * Vertical Scaling - which means increasing the configurations of a machine ( At a certain point of time , this comes to threshold
       and we need to opt for horizontal scaling .
     * Horizontal Scaling - which means adding more number of machines to the system 
     
-    Any system can be broadly divided into 3 types .
+   Any system can be broadly divided into 3 types .
     1. Shared memory architecture - vertical scaling
     1. Shared Disk architecture - data is stored on independent array of disks ( also called RAID config )
     1. Shared nothing architecture - horizontal scaling
