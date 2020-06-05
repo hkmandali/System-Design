@@ -227,5 +227,51 @@ required for modules independently
      nodes are going to be consistent.
    Replication lag is defined as the lag / difference between leader and follower
    
-      
+   * Reading your own writes - This happens in many applications viz insta / fb , where a user posts something and he can view
+     immediately , however for other uses it takes some time
+   * Monotonic Reads - lets take a condition where user has posted something and it has been written on a machine , when he reloads
+     the app immediately ,if the request goes to a different machine , the previous write wont be seen and he might upload again
+     To avoid this reads of a user go to the same machine -- this is called montonic Read
+   * Consistent Prefix Reads - Lets say we have some comments to a post and some users have posted some comments to your post .
+     What happens is you read the replys to a comment first and then the comment later ,that doesnt make sense . To avoid this 
+     reads are read in the same order of writes 
+   * One other solution for replication log is read after write and monotonic read .
+   
+ ###### Multi Leader Replication 
+   
+   Though it has many advantages , it should be avoided whereever possible because of the reasons mentioned above .SOme of the use cases
+   
+   * Clients with offline operation like calendar i.e every person updates it to their own and when they commit it has conflicts
+   * Couchdb is also an example of offline operation
+   * Collaborative editing like sharepoint where in many users may update simultaneously 
+   
+   > To resolve all of the above problems we have something like
+ ###### Automatic Conflict Resolution
+   1. Conflict Free Data Types ( CRDTS) --> two eay merge
+   1. Mergeable persistent data structures --> three way merge function
+   1. Operational Transformation --> which is used in google docs 
+   
+   We'll discuss Multi Leader Replication Topologies 
+   
+   1. Mysql -- circular topology i.e replication happens in a circular way , version vectors are used to resolve concurrent write conflicts
+   1. Leaderless Replication - Dynamo Db
+   1. Read Repair - When a client reads some data that column is updated with the newer value , this is applied during read
+   1. Anti Entropy - Back ground thread running 
+   1. Quorum for read and write - Num of machines which accept a specific read or write 
+   1. Monitoring Staleness - Whether data is replicated properly or not 
+   
+###### Sloppy Quorums and Hinted Handoff
+   Lets say based on the hashid(discussed later) of the user , the request goes to a particular node and if that is not available at
+   that instance of time , the transaction is temporarily written to other nodes and once the required nodes are reachable, the writes 
+   are handed back to them ( handoff)
+   Cassandra is also an example of leaderless replication
+###### Detecting Concurrent writes
+   * Last write wins - As discussed above based on the timestamp , we can decide which one is latest and proceed, however we need to 
+     keep track of unreliable clocks
+   * Happens before relationship is also another way to identify this -- it is passed with version number , so that we can get to know
+     which transaction has occurred before the other
+   * Merging COnsistently written values - Automatic conflict resolution
+   * Version Vectors - This is widely used in case of multiple replicas to identify which version has happened before which.
+  
+
   
