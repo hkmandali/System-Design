@@ -151,7 +151,7 @@ required for modules independently
       
 ## 4. Distributed Data 
 
-   > This is the  most important chapter as in many of the products the data is wide spread among different machines .
+   > This is the  most important chapter as in many of the real time products the data is wide spread among different machines .
     There are two ways a scale a system
     
    * Vertical Scaling - which means increasing the configurations of a machine ( At a certain point of time , this comes to threshold
@@ -162,4 +162,69 @@ required for modules independently
    1. Shared memory architecture - vertical scaling
    1. Shared Disk architecture - data is stored on independent array of disks ( also called RAID config )
    1. Shared nothing architecture - horizontal scaling
+   
+## 5. Replication
+  
+   > In any distributed system , we may have more than one db/server as the data is humongous , whenever a user enters any data 
+     it needs to be initially stored in one db and then replicated to other db's in the background to attain consistency 
+   > There might be a question in your mind ,what is the need for multiple dbs ? we can serve the requests for a particular user
+     through the same db each time . SO each db can have a certain set of users which it provides services for . In this way we dont
+     need to replicate data to other dbs . But still there's an issue . Pause for a moment and think .
+     
+     The answer is that what happens if that db is down ? no other db stores that particular set of data . SO we might have to return
+     failure to the user . To avoid this condition we replicate the data onto other servers in order to achieve Availability (CAP )
+   > There are broadly three types of replications
+   * Single Leader Replication - In this data writes always happen to a single server in a cluster and then the other servers take the
+     data replicated from the leader . 
+   * Multi Leader Replication - In this data can be written can be written to multiple nodes and those nodes should replicate the data
+     to other nodes . However the replication becomes a bit tough in this case as there can be cases where two or more update the same
+     record at the same time on different machines and the collision needs to resolved , there can be many ways to resolve it , one of
+     famous one is Last write wins(LWW) --> we'll be coming to this in the upcoming chapters
+   * Leaderless Replication - In this method of replication , there are no leaders . So , data writes can happen to any node and then
+     they must be replicating that data . Attaining consistency is most difficult in this approach as each node has its own data and all
+     of them need to come to a single state . THis is called consenses i.e when majority of them vote for a value ,that would be stored.
+   
+   Leaders and followers can also be termed as master slave architecture.
+   
+   In all of the above steps replication has can happen in two ways :
+   
+   1. Synchronous Replication - When a user enters data to a node and gets an acknowledgement only when the data is replicated to all
+      the nodes .THis is called chain replication.
+   1. Asynchronous Replication - When a user enters data to a node and gets an acknowledgement immediately and the replication happens
+      in the background .
+   
+   >  With all these thoughts in mind , how do we attain this ? how do we replicate the data maintaining consistency .
+   
+###### Setting up new followers 
+   
+   > This can be done by taking a snapshot of the data and then copying it to the followers
+   > MySql does this using Binlog coordinates , Postgresql does this using log sequence number
+   
+   In any of the apporaches , the changes from master to slave are processed periodically . 
+   
+   > What happens if a node fails ?
+   
+   * Follower failure - Resolving this is simple because , there are other nodes as well which contain the latest data and ofcourse 
+     there is master which has all the data . SO we can overcome this situation by catch up recovery 
+   * Leader Failure - When the leader fails , it becomes a bit tough as we need to choose who becomes the next leader based on the 
+     node which has the latest data / voting among the nodes . We'll discuss this in the upcoming sections
+   
+   We'll discuss how to replicate the data i.e implementation of replication logs  -
+   
+   1. Statement Based Replication - In this each statement i.e insert , delete , update are passed onto the slaves . THis approach is
+      not preferred as there might be some functions in the given statement vix rand() , time() which generate diff values at each 
+      instance so the data is not uniform over all the nodes .
+   2. Write Ahead log (shipping) - IN this each transaction is written to a log , so when the master fails this can be used to rebuild .
+      Also the same log can be sent to other nodes , so that they can replicate the data similar to the master . One drawback is that
+      the log consists of details about which bytes were changed on which disk so if the storage format is different for different
+      engines it becomes vague / tough for us to identify
+   3. Logical ( row based ) log replication - This is similar to the above one but the format is different for replication and storage
+      engine . If many rows are modified , it'll generate a record stating that transaction was committed .
+   4. Trigger based replication - This copies only a subset of data at each intervals
+   
+   > Eventual consistency is something which is seen in asynchronous replication , i.e we assume that at some point of time all the 
+     nodes are going to be consistent
+   > Replication lag is defined as the lag / difference between leader and follower
+   
+      
   
