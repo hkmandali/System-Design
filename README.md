@@ -22,6 +22,7 @@ required for modules independently
 1. [Data Warehousing](https://github.com/hkmandali/System-Design/blob/master/README.md#2-data-warehousing)
 1. [Encoding](https://github.com/hkmandali/System-Design/blob/master/README.md#3-encoding)
 1. [Distributed Data](https://github.com/hkmandali/System-Design/blob/master/README.md#4-distributed-data)
+1. [Replication](https://github.com/hkmandali/System-Design/blob/master/README.md#5-replication)
 
 ## 1.   Indexing
 
@@ -223,8 +224,8 @@ required for modules independently
    4. Trigger based replication - This copies only a subset of data at each intervals
    
    > Eventual consistency is something which is seen in asynchronous replication , i.e we assume that at some point of time all the 
-     nodes are going to be consistent
-   > Replication lag is defined as the lag / difference between leader and follower
+     nodes are going to be consistent.
+   Replication lag is defined as the lag / difference between leader and follower
    
       
   
