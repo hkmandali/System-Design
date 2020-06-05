@@ -148,7 +148,16 @@ required for modules independently
     This is similar to a message queue , has the advantage of message not being lost . Distributed actor frameworks are similar to 
     message brokers .
       
+## 4. Distributed Data 
+
+          This is the  most important chapter as in many of the products the data is wide spread among different machines .
+    There are two ways a scale a system
+    * Vertical Scaling - which means increasing the configurations of a machine ( At a certain point of time , this comes to threshold
+      and we need to opt for horizontal scaling .
+    * Horizontal Scaling - which means adding more number of machines to the system 
     
-      
-  
+    Any system can be broadly divided into 3 types .
+    1. Shared memory architecture - vertical scaling
+    1. Shared Disk architecture - data is stored on independent array of disks ( also called RAID config )
+    1. Shared nothing architecture - horizontal scaling
   
