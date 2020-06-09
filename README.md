@@ -273,5 +273,36 @@ required for modules independently
    * Merging COnsistently written values - Automatic conflict resolution
    * Version Vectors - This is widely used in case of multiple replicas to identify which version has happened before which.
   
+## 6. Partitioning:
+   
+   Partitioning of data is an essential in large scale systems as it would be used for quicker retrieval if we know in which segment
+   the data is partitioned into . Let's say we have 1-100 values , we know that 56 is going to lie in between 50-60 ,we can part, ition
+   the data into equal segments of length 10 .
+   > Partitioning can be done in different ways :
+   * By Key Range - This does partition based on the keys similar to above 1-100 , this is used in BigTable (HBase) as in similar
+     to encyclopedia
+   * By Hash of value - We can store the data into the segment based on the hash of the key . MD5 is an example.
+   * Consistent Hashing - Storing the same data in multiple partitions by consistently hashing i.e simultaneouslt storing the data
+     in segments through multiple hash functions . This has the advantage from the traditional method that in case of tradtional method
+     in case a new partition ( server db) is added , many of the previous values need to be to new partition based on hash function or
+     if one of the db goes down all its requests go to the next server there by increasing its load by drastic amount,
+     whereas in case of consistent hashing , as the distribution is uniformly random there by partitioning is also uniformly random .
+   * Skewed workload and relieving hotspots - If any of the server is overloaded we need to distribute it to other servers there by 
+     relieving that hotspot 
+###### Partitioning and secondary Indexes :
+   1. Document based partitioning :
+      This is based on local index, this also uses scatter gather i,e send a request to all of the documents and get results 
+   1. Term Based partitioning :
+      In this , indices are present only once throughout all the partitions i.e they are also partitioned
+###### Rebalancing :
+   >  Similar to consistent hashing , creates more partitions than nodes ( viz youtube )
+   
+   * Dynamic Partitioning -
+     Depending on the data , it is split (or) combined to partitions . HBase uses HDFS for transfer of partition files 
 
+   > Partitioning proportional to nodes .
+   
+   * Request Routing 
+     * Zookeeper : Each node registers itself under zookeeper and it maintains the mapping of partitions to nodes . Linkedin Expresso 
+       uses Helix ( Zookeeper)
   
