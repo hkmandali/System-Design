@@ -23,6 +23,7 @@ required for modules independently
 1. [Encoding](https://github.com/hkmandali/System-Design/blob/master/README.md#3-encoding)
 1. [Distributed Data](https://github.com/hkmandali/System-Design/blob/master/README.md#4-distributed-data)
 1. [Replication](https://github.com/hkmandali/System-Design/blob/master/README.md#5-replication)
+1. [Partitioning](https://github.com/hkmandali/System-Design/blob/master/README.md#6-partitioning)
 
 ## 1.   Indexing
 
