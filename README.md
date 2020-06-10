@@ -25,6 +25,8 @@ required for modules independently
 1. [Replication](https://github.com/hkmandali/System-Design/blob/master/README.md#5-replication)
 1. [Partitioning](https://github.com/hkmandali/System-Design/blob/master/README.md#6-partitioning)
 1. [Transactions](https://github.com/hkmandali/System-Design/blob/master/README.md#7-transactions)
+1. [Troubles](https://github.com/hkmandali/System-Design/blob/master/README.md#8-troubles-with-distributed-systems)
+   1. [Unreliable clocks](https://github.com/hkmandali/System-Design/blob/master/README.md#unreliable-clocks-)
 
 ## 1.   Indexing
 
@@ -393,7 +395,7 @@ required for modules independently
  ##### Logical Clocks :
    * These are the best in this scenario where it tells us the relative ordering of events , rather than time of day (or) no of seconds elapsed. 
    > Clock Readings have a confidence interval .
-   * Fencing Token: These are used in distributed writes by multiple tokens , this token increases everytime it is accessed .[MoreInfo](http://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html)
+   * Fencing Token: These are used in distributed writes by multiple tokens , this token increases everytime it is accessed .[More Info](http://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html)
    * Byzantine Generals Problem : Two nodes need to agree on a common value and where the client doesnt know the actual failure.
    * Byzantine Faults : These are something where the network / intermediates act as culprit stating that the transaction has failed 
      eventhough it has been successful.
