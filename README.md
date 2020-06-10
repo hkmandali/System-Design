@@ -308,28 +308,28 @@ required for modules independently
      * Zookeeper : Each node registers itself under zookeeper and it maintains the mapping of partitions to nodes . Linkedin Expresso 
        uses Helix ( Zookeeper)
   
- ## 7. Transactions:
+## 7. Transactions:
     
-    > There can be different types of transactions , viz
+   > There can be different types of transactions , viz
     
-      1. Read Committed
-      1. Snapshot Isolation
-      1. Serializability
+   1. Read Committed
+   1. Snapshot Isolation
+   1. Serializability
     
     We'll discussing these in the upcoming sections
     Whenever any write happens in the system , it can be of two types
       * Single Object writes 
       * Multi Objecct Writes
     
-    > In any of the above two scenarios there can be a variety of problems like in case of single " when we upload a document of size 20
+   > In any of the above two scenarios there can be a variety of problems like in case of single " when we upload a document of size 20
       kb and it fails after 10kb is uploaded, do we need to upload the whole doc again ? or how do we identify till which point it has 
       been uploaded ? In case of multi object writes there can be clauses like foreign key of multiple objects need to be valid " , how
       do we handle the errors ?
       
-    > Handling errors & aborts :
+   > Handling errors & aborts :
       
       Sometimes retry is not so efficient as it might have sideeffects .
-    > Some of the ways to achieve fail proof transactions is by using below methods -
+   > Some of the ways to achieve fail proof transactions is by using below methods -
 
 ###### Weak Isolation Levels : 
        By maintaining lock on the same object 
@@ -338,16 +338,16 @@ required for modules independently
 ###### Dirty Writes :
        A second write should not over write first write if the second write hasn't been committed yet .
 
-    > Databases implement dirty writes by having row level locks and dirty reads by maintaining two values ( old & new )
+   > Databases implement dirty writes by having row level locks and dirty reads by maintaining two values ( old & new )
 
 ###### Snapshot Isolation & repeatable reads :
        Multi version concurrency control (MVCC)
 
-    * Preventing lost updates 
+   * Preventing lost updates 
 ###### Atomic write operations : 
        This removes the need for read - modify - write , we can allow all writes on a single thread (or)
        lock an object when it is read and keep it locked till it is written . This is also called Explicit Locking
-      * Automatically detecting lost update :
+   * Automatically detecting lost update :
         If we dont value to follow on a single thread , we can use below methods - 
       1. Compare and Set :
          Using this approach we can mitigate lost operations by updating the value only if it hasnt been changed since the last time it
