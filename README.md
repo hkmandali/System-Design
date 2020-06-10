@@ -360,11 +360,11 @@ required for modules independently
        
 ###### Serializability :
        This can be in three ways 
-      1. Literally Serially - i.e transactions happen one after the other , there is no scenario if concurrent transactions ,hence it is
-         called literally serially
-      1. 2 Phase Locking - Writers block other readers and writers ( reads can happen simultaneously )
-      1. Snapshot Isolation - 
-         * Predicate Lock - SImilar to shared lock , whoever has the lock can access the resource
-         * Detecting Stale MVCC reads - In a single table flags are modified 
-         * Writes that affect prior reads - Modified in different tables .
+   1. Literally Serially - i.e transactions happen one after the other , there is no scenario if concurrent transactions ,hence it is
+       called literally serially
+   1. 2 Phase Locking - Writers block other readers and writers ( reads can happen simultaneously )
+   1. Snapshot Isolation - 
+      * Predicate Lock - SImilar to shared lock , whoever has the lock can access the resource
+      * Detecting Stale MVCC reads - In a single table flags are modified 
+       * Writes that affect prior reads - Modified in different tables .
 
