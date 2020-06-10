@@ -366,5 +366,47 @@ required for modules independently
    1. Snapshot Isolation - 
       * Predicate Lock - SImilar to shared lock , whoever has the lock can access the resource
       * Detecting Stale MVCC reads - In a single table flags are modified 
-       * Writes that affect prior reads - Modified in different tables .
-
+      * Writes that affect prior reads - Modified in different tables .
+      
+## 8. Troubles with distributed Systems 
+      
+      With the system getting larger and larger , the number of issues also keep on increasing , some of which are discussed below
+   * Network Partitioning : If one of the machines go down , can the system run smootly without any interruption ? Some of the companies
+     do it deliberately and check if the system is running smoothly , vix Chaos Monkey for Netflix which takes out some of the machines
+     and verifies if there isn't any issue .
+     
+     > There can be two types of networks 
+   * Circuit Switched Network : WHich is used in telephone , this is a network in which a bandwidth once allocated stays through out the
+     duration even though it is not completely utilized .
+   * Packet Switched Protocol : In this protocol , the bandwidth is allocated on adhoc basis , i.e once a packet is sent if it doesnt 
+     that bandwidth anymore it is free'd up , this helps us in better utilization of bandwidth . IP and Ethernet use packet switched
+     protocol. ATM can consist of both packet and circuit switched .
+### Latency & Resource utilization :
+ #### Unreliable Clocks :
+ ##### Time of Day Clocks:
+   * THis clocks are based on the time since epoch time ( i.e 1 st Jan 1970) and there are local clocks for each system and are usually 
+     synchronized by Network Time Protocol ( NTP) . The disadvantage with these is that they may jump back in time based on the NTP
+     server. Last write wins has many issues with this approach .
+ ##### Monotonic Clocks: 
+   * Here we have a guarantee that the time always moves forward , these clocks are used for local timing measurements . However if we
+     use these for distributed execution , the results may not be accurate .[More Info](https://itnext.io/as-a-software-developer-why-should-you-care-about-the-monotonic-clock-7d9c8533595c)
+ ##### Logical Clocks :
+   * These are the best in this scenario where it tells us the relative ordering of events , rather than time of day (or) no of seconds elapsed. 
+   > Clock Readings have a confidence interval .
+   * Fencing Token: These are used in distributed writes by multiple tokens , this token increases everytime it is accessed .[MoreInfo](http://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html)
+   * Byzantine Generals Problem : Two nodes need to agree on a common value and where the client doesnt know the actual failure.
+   * Byzantine Faults : These are something where the network / intermediates act as culprit stating that the transaction has failed 
+     eventhough it has been successful.
+   > Weak Forms of Lying :
+   
+   1. Crash Stop Faults :
+      If a node is crashed an doesnt come back
+   1. Crash Recovery :
+      If the node comes back after crashing .
+   1. Byzantine Faults :
+      Nodes may do absolutely anything.
+   > For real systems , there may be two types :
+     > Safety and Liveness
+   * Safety means that something bad may happen
+   * Liveness means that something good will eventually happen .
+   
