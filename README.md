@@ -408,7 +408,38 @@ required for modules independently
    1. Byzantine Faults :
       Nodes may do absolutely anything.
    > For real systems , there may be two types :
-     > Safety and Liveness
+      Safety and Liveness
    * Safety means that something bad may happen
    * Liveness means that something good will eventually happen .
+
+## 9. Consistency and Consensus :
+   * Linearizability : This means that every client should receive the same data for same read query , this is also called consistency
+   * Serializability : It is an isolation property of transactions where every txn may read & write multiple objects .
+   
+   For eg: In any website viz social networking site , when 2 users try to acquire same username , they first acquire a lock and then 
+   commit it to the db.
+   
+   1. Single Leader Replication ( Potentially linearizable)
+   1. Consensus ( Linearizable)
+   1. Multi Leader ( not linearizable)
+   1. Leaderless ( probably not linearizable)
+   
+   > Cost of Linearizability -
+   
+   * Linearizability & Network Delays :
+     Each CPU has its own memory cache & store buffer
+   * Ordering Guarantees : Need to update , dont have much info as of now
+   * Sequence Number Ordering :
+     Sequence numbers are used to identify which transaction comes before which
+   * Lamport Timestamp:
+     THis is used for casual ordering of events and is predominantly used in distributed systems
+   * Total Order Broadcast : 
+     This is a protocol for exchanging messages between nodes and is used in distributed consensus for agreement of data among nodes
+   > There are two types of commit , atomic commit and 2 phase commit
+   
+   1. 2 phase commit is used for achieving atomic txn across multiple nodes
+      1. Two phase commit is like co ordinator sends a prepate request to all nodes and wait for reply , if all of them send yes , it 
+         will commit . If atleast 1 of them replies no , it'll abort
+      1. Co ordinator must write its commits or abort decision to a txn log before sending commits 
+   1. Derived data is something we get instead of user providing it.
    
