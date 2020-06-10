@@ -312,14 +312,14 @@ required for modules independently
     
    > There can be different types of transactions , viz
     
-   1. Read Committed
-   1. Snapshot Isolation
-   1. Serializability
+   1. [Read Committed](https://github.com/hkmandali/System-Design/blob/master/README.md#read-committed-)
+   1. [Snapshot Isolation](https://github.com/hkmandali/System-Design/blob/master/README.md#snapshot-isolation--repeatable-reads-)
+   1. [Serializability](https://github.com/hkmandali/System-Design/blob/master/README.md#serializability-)
     
     We'll discussing these in the upcoming sections
     Whenever any write happens in the system , it can be of two types
-      * Single Object writes 
-      * Multi Objecct Writes
+   * Single Object writes 
+   * Multi Objecct Writes
     
    > In any of the above two scenarios there can be a variety of problems like in case of single " when we upload a document of size 20
       kb and it fails after 10kb is uploaded, do we need to upload the whole doc again ? or how do we identify till which point it has 
