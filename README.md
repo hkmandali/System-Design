@@ -27,6 +27,7 @@ required for modules independently
 1. [Transactions](https://github.com/hkmandali/System-Design/blob/master/README.md#7-transactions)
 1. [Troubles](https://github.com/hkmandali/System-Design/blob/master/README.md#8-troubles-with-distributed-systems)
    1. [Unreliable clocks](https://github.com/hkmandali/System-Design/blob/master/README.md#unreliable-clocks-)
+1. [Consistency & Consensus](https://github.com/hkmandali/System-Design/blob/master/README.md#9-consistency-and-consensus-)
 
 ## 1.   Indexing
 
