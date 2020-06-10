@@ -447,11 +447,11 @@ required for modules independently
    
 ## 10. Batch Processing:
    
-   We shalldiscuss about some types of data processing in this chapter
+   We shalldiscuss about some types of data processing in this chapter:   
 	 1. Service : A service is similar to an api i.e a function call is made and a response is received . THe primary measure of
-			 performance is service time
+	   	performance is service time
 	 1. Batch Processing: This takes large amount of input and produce output eg: periodically running jobs viz deleting the data after 
-			 every month
+	  	every month
 	 1. Stream Processing: This is also similar to Bath Processing but generally has a lower latency
     
    * Batch Processing using Unix Tools :
