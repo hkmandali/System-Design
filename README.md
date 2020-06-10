@@ -24,6 +24,7 @@ required for modules independently
 1. [Distributed Data](https://github.com/hkmandali/System-Design/blob/master/README.md#4-distributed-data)
 1. [Replication](https://github.com/hkmandali/System-Design/blob/master/README.md#5-replication)
 1. [Partitioning](https://github.com/hkmandali/System-Design/blob/master/README.md#6-partitioning)
+1. [Transactions](https://github.com/hkmandali/System-Design/blob/master/README.md#7-transactions)
 
 ## 1.   Indexing
 
@@ -311,14 +312,14 @@ required for modules independently
     
     > There can be different types of transactions , viz
     
-    1. Read Committed
-    1. Snapshot Isolation
-    1. Serializability
+      1. Read Committed
+      1. Snapshot Isolation
+      1. Serializability
     
     We'll discussing these in the upcoming sections
     Whenever any write happens in the system , it can be of two types
-    * Single Object writes 
-    * Multi Objecct Writes
+      * Single Object writes 
+      * Multi Objecct Writes
     
     > In any of the above two scenarios there can be a variety of problems like in case of single " when we upload a document of size 20
       kb and it fails after 10kb is uploaded, do we need to upload the whole doc again ? or how do we identify till which point it has 
@@ -330,35 +331,40 @@ required for modules independently
       Sometimes retry is not so efficient as it might have sideeffects .
     > Some of the ways to achieve fail proof transactions is by using below methods -
 
-###### Weak Isolation Levels : By maintaining lock on the same object 
-###### Read Committed : No dirty reads ( this means we should read only the data which has been committed )
-###### Dirty Writes : A second write should not over write first write if the second write hasn't been committed yet .
+###### Weak Isolation Levels : 
+       By maintaining lock on the same object 
+###### Read Committed : 
+       No dirty reads ( this means we should read only the data which has been committed )
+###### Dirty Writes :
+       A second write should not over write first write if the second write hasn't been committed yet .
 
     > Databases implement dirty writes by having row level locks and dirty reads by maintaining two values ( old & new )
 
-###### Snapshot Isolation & repeatable reads : Multi version concurrency control (MVCC)
+###### Snapshot Isolation & repeatable reads :
+       Multi version concurrency control (MVCC)
 
     * Preventing lost updates 
-###### Atomic write operations : This removes the need for read - modify - write , we can allow all writes on a single thread (or)
+###### Atomic write operations : 
+       This removes the need for read - modify - write , we can allow all writes on a single thread (or)
        lock an object when it is read and keep it locked till it is written . This is also called Explicit Locking
-    * Automatically detecting lost update :
-      If we dont value to follow on a single thread , we can use below methods - 
-    1. Compare and Set :
-       Using this approach we can mitigate lost operations by updating the value only if it hasnt been changed since the last time it
-       has been read , else read modify write must be retried
-    1. Write Skews & phantoms : 
-       This is a scenario when different transactions modify different objects but still there is a problem to lock rows we use for 
-       update . For eg : Two doctors on call duty , both of them updating diff doctor objects but still there is an issue
+      * Automatically detecting lost update :
+        If we dont value to follow on a single thread , we can use below methods - 
+      1. Compare and Set :
+         Using this approach we can mitigate lost operations by updating the value only if it hasnt been changed since the last time it
+         has been read , else read modify write must be retried
+      1. Write Skews & phantoms : 
+         This is a scenario when different transactions modify different objects but still there is a problem to lock rows we use for 
+         update . For eg : Two doctors on call duty , both of them updating diff doctor objects but still there is an issue
 ###### Phantoms causing write skews :
        Writes in one transaction changes the result of a search query in another transaction is called phantom .
        
 ###### Serializability :
        This can be in three ways 
-    1. Literally Serially - i.e transactions happen one after the other , there is no scenario if concurrent transactions , hence it is
-       called literally serially
-    1. 2 Phase Locking - Writers block other readers and writers ( reads can happen simultaneously )
-    1. Snapshot Isolation - 
-       * Predicate Lock - SImilar to shared lock , whoever has the lock can access the resource
-       * Detecting Stale MVCC reads - In a single table flags are modified 
-       * Writes that affect prior reads - Modified in different tables .
+      1. Literally Serially - i.e transactions happen one after the other , there is no scenario if concurrent transactions ,hence it is
+         called literally serially
+      1. 2 Phase Locking - Writers block other readers and writers ( reads can happen simultaneously )
+      1. Snapshot Isolation - 
+         * Predicate Lock - SImilar to shared lock , whoever has the lock can access the resource
+         * Detecting Stale MVCC reads - In a single table flags are modified 
+         * Writes that affect prior reads - Modified in different tables .
 
