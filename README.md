@@ -28,6 +28,7 @@ required for modules independently
 1. [Troubles](https://github.com/hkmandali/System-Design/blob/master/README.md#8-troubles-with-distributed-systems)
    1. [Unreliable clocks](https://github.com/hkmandali/System-Design/blob/master/README.md#unreliable-clocks-)
 1. [Consistency & Consensus](https://github.com/hkmandali/System-Design/blob/master/README.md#9-consistency-and-consensus-)
+1. [Batch Processing](https://github.com/hkmandali/System-Design/blob/master/README.md#10-batch-processing)
 
 ## 1.   Indexing
 
@@ -447,11 +448,11 @@ required for modules independently
 ## 10. Batch Processing:
    
    We shalldiscuss about some types of data processing in this chapter
-    1. Service : A service is similar to an api i.e a function call is made and a response is received . THe primary measure of
-       performance is service time
-    1. Batch Processing: This takes large amount of input and produce output eg: periodically running jobs viz deleting the data after 
-       every month
-    1. Stream Processing: This is also similar to Bath Processing but generally has a lower latency
+	 1. Service : A service is similar to an api i.e a function call is made and a response is received . THe primary measure of
+			 performance is service time
+	 1. Batch Processing: This takes large amount of input and produce output eg: periodically running jobs viz deleting the data after 
+			 every month
+	 1. Stream Processing: This is also similar to Bath Processing but generally has a lower latency
     
    * Batch Processing using Unix Tools :
      Biggest limitation of unix tools is that they run only on a single machine , thats where tools like Hadoop come in
