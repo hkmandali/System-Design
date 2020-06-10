@@ -444,3 +444,19 @@ required for modules independently
       1. Co ordinator must write its commits or abort decision to a txn log before sending commits 
    1. Derived data is something we get instead of user providing it.
    
+## 10. Batch Processing:
+   
+   We shalldiscuss about some types of data processing in this chapter
+    1. Service : A service is similar to an api i.e a function call is made and a response is received . THe primary measure of
+       performance is service time
+    1. Batch Processing: This takes large amount of input and produce output eg: periodically running jobs viz deleting the data after 
+       every month
+    1. Stream Processing: This is also similar to Bath Processing but generally has a lower latency
+    
+   * Batch Processing using Unix Tools :
+     Biggest limitation of unix tools is that they run only on a single machine , thats where tools like Hadoop come in
+###### Map Reduce :
+     Hadoop's implementation of map reduce is called HDFS( Hadoop distributed file system) , an open source of Google File System(GFS)
+     Map Reduce has two steps as below
+   * Map : Converts the data into key value pairs
+   * Reduce : Collects all values belonging to same key and calls reduce over collection of values .
