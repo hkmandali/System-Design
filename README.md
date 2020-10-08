@@ -11,7 +11,11 @@ Some of the initial steps which can be thought/clarified during the inital phase
 * high level design
 * low level design
 * data partitioning and replication
-* caching
+* Caching
+   * Write Through - The data is updated to cache and the db simultaneously and ack is passed only after both are updated
+   * Write Back - The data is updated only in cache and an ack is passed , the data is updated in db later time when the corresponding data is again replaced in the cache 
+     , this is known as lazy write .
+   * Write Around - The data is updated in the db and an ack is passed and then the data is updated in the cache 
 
 with these concepts in mind , we can think about an initial design on how to proceed with sql/no sql approach and rest/soap based approach
 required for modules independently
